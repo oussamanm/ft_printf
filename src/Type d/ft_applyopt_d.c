@@ -13,7 +13,7 @@
 #include "../../includes/ft_printf.h"
 
 ///// ft_apply_with_d : Apply width 
-char    *ft_applywith_d(char *resu, char *value, st_listopt *st_opt)
+char    *ft_applywith_d(char *resu, char *value, st_listopt *st_opt) // Done
 {
     int     len;
     int     i;
@@ -43,7 +43,7 @@ char    *ft_applywith_d(char *resu, char *value, st_listopt *st_opt)
 }
 
 ///// ft_applypre_d : Apply pre and add sign 
-char    *ft_applypre_d(char *value, int opt_pre, char *opt_flag)
+char    *ft_applypre_d(char *value, int opt_pre, char *opt_flag) // Done
 {
     char    *n_value;
     int     len_value;
@@ -73,7 +73,7 @@ char    *ft_applypre_d(char *value, int opt_pre, char *opt_flag)
 }
 
 ///// ft_apply_main_flag : apply flag '0','+',' '
-void    ft_applymain_flag(char *r, char *n_v, st_listopt *st_op, int *index)
+void    ft_applymain_flag(char *r, char *n_v, st_listopt *st_op, int *index) // Done
 {
     int len_value;
     len_value = ft_strlen(n_v);
@@ -89,37 +89,27 @@ void    ft_applymain_flag(char *r, char *n_v, st_listopt *st_op, int *index)
 }
 
 // Flags '+'
-void    ft_applyflagp_d(char *resu, char **n_value,int *index, st_listopt *st_opt) /// > 25
+void    ft_applyflagp_d(char *resu, char **n_value, int *index, st_listopt *st_opt) /// Done
 {
-    int     len_value;
-
-    len_value = ft_strlen(*n_value);
-    if (ft_check_char(st_opt->opt_flag, '+') == 1) /// Check to Add + /// conditon removed st_opt->opt_pre == -1 && ***************
+    if (ft_check_char(st_opt->opt_flag, '+') == 1 && (*n_value)[0] != '-') /// Check to Add + /// conditon removed st_opt->opt_pre == -1 && ***************
     {
-        if ((*n_value)[0] != '-')
+        if (*index == 0)
+            resu[(*index)++] = '+';
+        else
         {
-            if (*index == 0)
-                resu[(*index)++] = '+';
-            else
-            {
-                if (ft_check_char(st_opt->opt_flag, '0') == 1 && st_opt->opt_fwidth > len_value)
-                    resu[0] = '+'; /*change *n_value[0] with resu[0] in example |%+08d|\n", 13 */
-                else if (*n_value[0] != '+')
-                    resu[*index - 1] = '+';
-            }
+            if (ft_check_char(st_opt->opt_flag, '0') == 1 &&
+             st_opt->opt_fwidth > (int)ft_strlen(*n_value))
+                resu[0] = '+'; /*change *n_value[0] with resu[0] in example |%+08d|\n", 13 */
+            resu[*index - 1] = (*n_value[0] != '+') ? '+' : resu[*index - 1];
         }
     }
     if ((*n_value)[0] == '-' && ft_check_char(st_opt->opt_flag, '0') == 1) /// Check to Add '-' in case of using (flage +) or (value < 0 && flag '0')
     {
-        if (st_opt->opt_fwidth <= len_value)
+        if (st_opt->opt_fwidth <= (int)ft_strlen(*n_value))
             return ;
-        else if (st_opt->opt_fwidth != -1 && ft_check_char(st_opt->opt_flag, '0') == 1 && st_opt->opt_pre == -1)
-        {
-            resu[0] = '-';
-            ft_rmchar(*n_value, '-');
-            (*index)++;
-        }
-        else if (st_opt->opt_pre > (len_value - 1))
+        else if ((st_opt->opt_fwidth != -1 && st_opt->opt_pre == -1  &&
+            ft_check_char(st_opt->opt_flag, '0') == 1) ||
+            st_opt->opt_pre > ((int)ft_strlen(*n_value) - 1))
         {
             resu[0] = '-';
             ft_rmchar(*n_value, '-');
@@ -128,8 +118,8 @@ void    ft_applyflagp_d(char *resu, char **n_value,int *index, st_listopt *st_op
     }
 }
 
-// Flag ' '
-void    ft_applyflags_d(char *resu, char *n_v, int *indx, st_listopt *st_opt)
+// ft_applyflagspace_d : apply Flag ' '
+void    ft_applyflags_d(char *resu, char *n_v, int *indx, st_listopt *st_opt)  /// Done
 {
     int     len_value;
 

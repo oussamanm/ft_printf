@@ -22,6 +22,7 @@ int     ft_type_d(st_listopt *st_opt, va_list *ap)
     resu = NULL;
     value = NULL;
     i_value = va_arg(*ap, long long int);
+    st_opt->c = 'd';
     ////// Length modifier
     value = ft_apply_lenmod_d(i_value, st_opt->opt_len);
     if (ft_atoi(value) == 0 && st_opt->opt_pre == 0 && st_opt->opt_fwidth == -1) //// case of 0
@@ -44,7 +45,7 @@ int     ft_type_d(st_listopt *st_opt, va_list *ap)
 }
 
 ///// ft_applyoption_d : apply option for d => pre / flag 
-char    *ft_applyopt_d(char *resu, char *value, st_listopt *st_opt) /// > 25
+char    *ft_applyopt_d(char *resu, char *value, st_listopt *st_opt) /// > 25 + 2
 {
     char    *n_value;
     int     len_v;
@@ -83,7 +84,7 @@ char    *ft_applyopt_d(char *resu, char *value, st_listopt *st_opt) /// > 25
 }
 
 //// ft_apply_len modifier_d : apply len modifier for d
-char    *ft_apply_lenmod_d(long long int i_value, char *opt_len)
+char    *ft_apply_lenmod_d(long long int i_value, char *opt_len) /// Done
 {
     char    *value;
 

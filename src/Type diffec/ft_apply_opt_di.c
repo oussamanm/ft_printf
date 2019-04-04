@@ -10,59 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "../../includes/ft_printf.h"
 
-////**  Type s and c **/////
-
-// width tyep 's' and 'c'
-char    *ft_apply_with(char *resu, char *value, st_listopt *st_opt)
-{
-    int     len;
-
-    len = (int)ft_strlen(value);
-    if (st_opt->opt_fwidth > len || (st_opt->opt_fwidth < len && 
-        st_opt->opt_pre != -1 && st_opt->opt_fwidth > st_opt->opt_pre))
-    {
-        resu = ft_strnew(st_opt->opt_fwidth);
-        len = st_opt->opt_fwidth;
-    }
-    else
-    {
-        if (st_opt->opt_pre != -1 && st_opt->opt_pre < len)
-            len = st_opt->opt_pre;
-        resu = ft_strnew(len);
-    }
-    ft_bchar(resu, len, ' ');
-    return (resu);
-}
-
-// Precision
-void    ft_applypre_s(char *resu, char *value , st_listopt *st_opt)
-{
-    char    *n_value;
-    size_t  len_value;
-    int     reste;
-
-    len_value = ft_strlen(value);
-    n_value = value;
-    reste = 0;
-    /// cas pre < len (cut value)
-    if (st_opt->opt_pre < (int  )len_value && st_opt->opt_pre != -1)
-        n_value = ft_strsub(value, 0, st_opt->opt_pre);
-    if (st_opt->opt_fwidth > (int )ft_strlen(n_value))
-    {
-        reste = st_opt->opt_fwidth - (int )ft_strlen(n_value);
-        /// Apply flag '-'
-        if (st_opt->opt_flag != NULL && ft_check_char(st_opt->opt_flag, '-') == 1)
-            reste = 0;
-    }
-    ft_memcpy(&resu[reste], n_value, ft_strlen(n_value));
-    if (n_value != value && n_value)
-        free(n_value);
-}
 
 //////**  Type x X **/////
-int    ft_applyopt_x(char **resu, char **value, st_listopt *st_opt)
+int    ft_applyopt_x(char **resu, char **value, st_listopt *st_opt) /// >>> 25 
 {
     int     len;
     char    *n_value;
@@ -91,13 +43,13 @@ int    ft_applyopt_x(char **resu, char **value, st_listopt *st_opt)
         len_v = ft_strlen(n_value);
     }
     *resu = ft_strnew_char(len, c);
-    //if (*value != NULL)
-    //    ft_strdel(value);
+    if (*value != n_value)
+        ft_strdel(value);
     *value = n_value;
     return (len_v);
 }
 
-void    ft_applyflagh_x(char **r, char **n_v, st_listopt *st_opt)
+void    ft_applyflagh_x(char **r, char **n_v, st_listopt *st_opt) /// Done
 {
     int     len;
     int     i;
@@ -124,7 +76,7 @@ void    ft_applyflagh_x(char **r, char **n_v, st_listopt *st_opt)
     }
 }
 
-void    ft_correct_flagx(st_listopt *st_opt, char *flag, char c)
+void    ft_correct_flagx(st_listopt *st_opt, char *flag, char c) /// Done
 {
     int i;
 
@@ -139,10 +91,8 @@ void    ft_correct_flagx(st_listopt *st_opt, char *flag, char c)
     }
 }
 
-
-//////**  Type o **/////
-
-char    *ft_apply_lenmod_u(unsigned long long i_value, char *opt_len)
+//// ft_apply_lenmod_u :  len modifier for Type u
+char    *ft_apply_lenmod_u(unsigned long long i_value, char *opt_len) /// Done
 {
     char    *value;
 
@@ -161,10 +111,8 @@ char    *ft_apply_lenmod_u(unsigned long long i_value, char *opt_len)
     return value;
 }
 
-
-///////** Type u **//////
-
-unsigned long long    ft_apply_lenmod_o(va_list *ap, char *opt_len)
+//// ft_apply_lenmod_o :  len modifier for Type o 
+unsigned long long    ft_apply_lenmod_o(va_list *ap, char *opt_len) /// Done
 {
     unsigned long long int i_value;
 

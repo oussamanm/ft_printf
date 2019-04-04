@@ -13,7 +13,7 @@
 #include "../../includes/ft_printf.h"
 
 //// ft_type_% : main function for type %
-int     ft_type_perc(st_listopt *st_opt, va_list *ap)
+int     ft_type_perc(st_listopt *st_opt, va_list *ap) /// Done
 {
     char *resu;
 
@@ -39,7 +39,7 @@ int     ft_type_perc(st_listopt *st_opt, va_list *ap)
 }
 
 //// ft_type_c : main function for type c
-int     ft_type_c(st_listopt *st_opt, va_list *ap)
+int     ft_type_c(st_listopt *st_opt, va_list *ap) /// Done
 {
 	int     value;
 	char    *resu;
@@ -68,7 +68,7 @@ int     ft_type_c(st_listopt *st_opt, va_list *ap)
 	return ((value == 0) ? (ft_putstrr(resu, 1) + 1) : ft_putstrr(resu, 1));
 }
 //// ft_type_s : main function for type s
-int     ft_type_s(st_listopt *st_opt, va_list *ap)
+int     ft_type_s(st_listopt *st_opt, va_list *ap) /// Done
 {
     char    *value;
     char    i_null;

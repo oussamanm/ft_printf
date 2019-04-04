@@ -78,8 +78,7 @@ int     ft_checkpre(char *str, int *index) // Main : return int of prec cln
     else if (i == 1)
         resu = 0;
     *index += i; 
-    if (temp != NULL)
-        ft_strdel(&temp);
+    ft_strdel(&temp);
     return (resu);
 }
 

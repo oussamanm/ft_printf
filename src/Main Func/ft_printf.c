@@ -13,7 +13,7 @@
 #include "../../includes/ft_printf.h"
 
 /// ft_call_type : call type and return len read
-int		ft_call_type(char c, st_listopt *st_opt, va_list *ap) 
+int		ft_call_type(char c, st_listopt *st_opt, va_list *ap)  /// Done
 {
 	int		rtn;
 
@@ -40,7 +40,7 @@ int		ft_call_type(char c, st_listopt *st_opt, va_list *ap)
 }
 
 /// ft_arg : fill list option and return index len of all opt
-int		ft_arg(char *str, st_listopt *st_opt)
+int		ft_arg(char *str, st_listopt *st_opt) /// Done
 {
 	int			index_type;
 	int			rtn;
@@ -63,7 +63,7 @@ int		ft_arg(char *str, st_listopt *st_opt)
 }
 
 /// ft_printf : loop char of str_print , print result and return fin len of read
-int		ft_printf(char *str_print, ...)
+int		ft_printf(char *str_print, ...) /// Done
 {
 	va_list		ap;
 	st_listopt	*st_opt;

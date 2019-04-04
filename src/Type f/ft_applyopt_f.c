@@ -13,7 +13,7 @@
 #include "../../includes/ft_printf.h"
 
 //// ft_apply_option_f : apply all option for type f : Pre & Width & '0' & '-' & '+'
-char    *ft_applyopt_f(char *value, st_listopt *st_opt)
+char    *ft_applyopt_f(char *value, st_listopt *st_opt) // Done
 {
     char    *n_value;
     char    *resu;
@@ -44,7 +44,7 @@ char    *ft_applyopt_f(char *value, st_listopt *st_opt)
 }
 
 //// ft_correct_precision : cut n_value and add 1 if necessary 
-char    *ft_correct_pre(char *value, int index)
+char    *ft_correct_pre(char *value, int index) // Done
 {
     int     index_p;
     int     rest;
@@ -68,7 +68,7 @@ char    *ft_correct_pre(char *value, int index)
 }
 
 //// ft_applyprecision_f : apply precision for type f and 
-char    *ft_applypre_f(char *value, int opt_pre, char *opt_flag)
+char    *ft_applypre_f(char *value, int opt_pre, char *opt_flag) // Done
 {
     int     index;
     char    *n_value;
@@ -97,7 +97,7 @@ char    *ft_applypre_f(char *value, int opt_pre, char *opt_flag)
     return (n_value);
 }
 
-void    ft_appyflagp_f(char *resu, char *value, int *indx, st_listopt *st_opt)
+void    ft_appyflagp_f(char *resu, char *value, int *indx, st_listopt *st_opt) // Done
 {
     if (st_opt->opt_fwidth > (int)ft_strlen(value))
     {

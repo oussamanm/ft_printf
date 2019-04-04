@@ -13,7 +13,7 @@
 #include "../../includes/ft_printf.h"
 
 /// ft_declen : get len of a number
-int					ft_declen(int nbr)
+int					ft_declen(int nbr) // Done
 {
 	int		i;
 
@@ -35,7 +35,7 @@ int					ft_declen(int nbr)
 
 ///Task : remove one function of power
 
-unsigned long long	ft_power(int nbr, int pwr)
+unsigned long long	ft_power(int nbr, int pwr) // Done
 {
 	unsigned long long	rtn;
 
@@ -50,7 +50,7 @@ unsigned long long	ft_power(int nbr, int pwr)
 	return (rtn);
 }
 
-unsigned long long	ft_power_nega(int nbr, int pwr)
+unsigned long long	ft_power_nega(int nbr, int pwr)  // Done
 {
 	unsigned long long	rtn;
 
@@ -65,7 +65,7 @@ unsigned long long	ft_power_nega(int nbr, int pwr)
 	return (rtn);
 }
 
-int     ft_all_zero(char *nbr)
+int     ft_all_zero(char *nbr)  // Done
 {
     if (nbr)
     while(*nbr != '\0')

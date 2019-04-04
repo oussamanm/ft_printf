@@ -13,7 +13,7 @@
 #include "../../includes/ft_printf.h"
 
 //// ft_add_char : add char in index of string
-char	*ft_add_char(char *str, int index, char c, int i_free)
+char	*ft_add_char(char *str, int index, char c, int i_free) // Done
 {
 	int		len;
 	char	*rtn;
@@ -43,7 +43,7 @@ char	*ft_add_char(char *str, int index, char c, int i_free)
 }
 
 //// ft_remove_char : remove char from string
-void	ft_rmchar(char *src, char c)
+void	ft_rmchar(char *src, char c) // Done
 {
 	int		i;
 	int		j;
@@ -66,7 +66,7 @@ void	ft_rmchar(char *src, char c)
 }
 
 //// ft_string_reverse : shift string to right or left
-char	*ft_strrev(char *str, size_t len, int alloc)
+char	*ft_strrev(char *str, size_t len, int alloc) // Done
 {
 	size_t	i;
 	size_t	j;
@@ -96,7 +96,7 @@ char	*ft_strrev(char *str, size_t len, int alloc)
 }
 
 //// ft_shift_str : shift string to right or left
-char	*ft_shift_str(int r_l, char *str, int nbr_shift)
+char	*ft_shift_str(int r_l, char *str, int nbr_shift) // Done
 {
 	char	*new_str;
 	int		len;
@@ -119,7 +119,7 @@ char	*ft_shift_str(int r_l, char *str, int nbr_shift)
 }
 
 //// ft_escap_zeros : rm all zeros in first of string
-char	*ft_escap_str(char *str)
+char	*ft_escap_str(char *str) // Done
 {
 	int		i;
 	int		len;
