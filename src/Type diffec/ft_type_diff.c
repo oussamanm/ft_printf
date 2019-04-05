@@ -38,7 +38,7 @@ int     ft_type_o(st_listopt *st_opt, va_list *ap) /// Done
         value = ft_strjoir("0", value , 2);
     ///// apply with and other opt
     resu = ft_applywith_d(NULL, value, st_opt);
-    resu = ft_applyopt_d(resu, value, st_opt);
+    resu = ft_applyopt_d(resu, value, st_opt, 0);
     // free value ;
     (value != NULL) ? ft_strdel(&value) : NULL;
     return (ft_putstrr(resu, 1));
@@ -68,13 +68,13 @@ int     ft_type_u(st_listopt *st_opt, va_list *ap) // Done
         }
     }
     resu = ft_applywith_d(resu, value, st_opt);
-    resu = ft_applyopt_d(resu, value, st_opt);
+    resu = ft_applyopt_d(resu, value, st_opt, 0);
     // free value and resu;
     ft_strdel(&value);
     return (ft_putstrr(resu, 1));
 }
 
-int     ft_type_x(st_listopt *st_opt, va_list *ap, char c) /// Done except 1 ligne
+int     ft_type_x(st_listopt *st_opt, va_list *ap, char c) /// Done
 {
     unsigned long long int  i_value;
     char                    *resu;
@@ -93,7 +93,7 @@ int     ft_type_x(st_listopt *st_opt, va_list *ap, char c) /// Done except 1 lig
     }
     value = ft_conv_base(i_value, 16, (c == 'x') ? 0 : 1);
     ft_correct_flagx(st_opt, st_opt->opt_flag, 'x');
-    i_value = ft_applyopt_x(&resu, &value, st_opt);
+    i_value = ft_applyopt_x(&resu, &value, st_opt, ' ');
     ft_applyflagh_x(&resu, &value, st_opt);
     i_value = ft_strlen(value);
     if (st_opt->opt_fwidth > (int )i_value && ft_check_char(st_opt->opt_flag, '-') != 1)
@@ -115,7 +115,7 @@ int     ft_type_p(st_listopt *st_opt, va_list *ap) /// Done
     value = ft_conv_base(i_value, 16, 0);
     value = ft_strjoir("0x",value ,2);
     resu = ft_applywith_d(resu, value, st_opt);
-    resu = ft_applyopt_d(resu, value, st_opt);
+    resu = ft_applyopt_d(resu, value, st_opt, 0);
     ft_strdel(&value);
     return (ft_putstrr(resu, 1));
 }

@@ -14,14 +14,12 @@
 
 
 //////**  Type x X **/////
-int    ft_applyopt_x(char **resu, char **value, st_listopt *st_opt) /// >>> 25 
+int    ft_applyopt_x(char **resu, char **value, st_listopt *st_opt, char c) /// Done
 {
     int     len;
     char    *n_value;
-    char    c;
     int     len_v;
 
-    c = ' ';
     n_value = *value;
     len_v = (int )ft_strlen(*value);
     len = len_v;
@@ -33,23 +31,19 @@ int    ft_applyopt_x(char **resu, char **value, st_listopt *st_opt) /// >>> 25
     }
     if (st_opt->opt_pre != -1 && st_opt->opt_pre > len_v)
     {
-        if (st_opt->opt_pre > st_opt->opt_fwidth)
-        {
-            len = st_opt->opt_pre;
-            c = '0';
-        }
+        len = (st_opt->opt_pre > st_opt->opt_fwidth) ? st_opt->opt_pre : len;
+        c = (st_opt->opt_pre > st_opt->opt_fwidth) ? '0' : c;
         n_value = ft_strnew_char(st_opt->opt_pre, '0');
         ft_memcpy(&n_value[st_opt->opt_pre - len_v], *value, len_v);
         len_v = ft_strlen(n_value);
     }
     *resu = ft_strnew_char(len, c);
-    if (*value != n_value)
-        ft_strdel(value);
+    (*value != n_value) ? ft_strdel(value) : NULL;
     *value = n_value;
     return (len_v);
 }
 
-void    ft_applyflagh_x(char **r, char **n_v, st_listopt *st_opt) /// Done
+void    ft_applyflagh_x(char **r, char **n_v, st_listopt *st_opt) /// Do
 {
     int     len;
     int     i;
@@ -72,7 +66,12 @@ void    ft_applyflagh_x(char **r, char **n_v, st_listopt *st_opt) /// Done
         if (i == -1 && st_opt->opt_fwidth > len && ft_check_char(st_opt->opt_flag, '0') == 1)
             *r = ft_memcpy(*r, (st_opt->c == 'x' ? "0x" : "0X"), 2);
         else if (i == -1)
+        {
             *n_v = ft_strjoir((st_opt->c == 'x' ? "0x" : "0X"), *n_v, 2);
+            i = ft_strlen(*r);
+            ft_strdel(r);
+            *r = ft_strnew_char(i + ((st_opt->opt_fwidth > len) ? 0 : 2), ' ');
+        }
     }
 }
 

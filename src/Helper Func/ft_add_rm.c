@@ -35,3 +35,16 @@ st_expdb		*ft_add_lstexp(void)
 	st_exp->frac = "";
 	return (st_exp);
 }
+
+char    *ft_typef_help(st_listopt *st_opt, t_bits *st_bits, va_list *ap)
+{
+    char    *i_value;
+    
+    if (ft_check_char(st_opt->opt_len, 'L') == 1)       /// long Double
+        i_value = ft_type_Lf(st_bits, ap);
+    else if (ft_check_char(st_opt->opt_len, 'l') == 1)   /// float || Double
+        i_value = ft_type_lf(st_bits, ap, 1);
+    else
+        i_value = ft_type_lf(st_bits, ap, 0);
+    return (i_value);
+}

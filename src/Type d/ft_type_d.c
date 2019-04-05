@@ -13,7 +13,7 @@
 #include "../../includes/ft_printf.h"
 
 ///// ft_type_d : main function for type d,i
-int     ft_type_d(st_listopt *st_opt, va_list *ap)
+int     ft_type_d(st_listopt *st_opt, va_list *ap) // Done
 {
     long long int   i_value;
     char            *resu;
@@ -23,9 +23,8 @@ int     ft_type_d(st_listopt *st_opt, va_list *ap)
     value = NULL;
     i_value = va_arg(*ap, long long int);
     st_opt->c = 'd';
-    ////// Length modifier
     value = ft_apply_lenmod_d(i_value, st_opt->opt_len);
-    if (ft_atoi(value) == 0 && st_opt->opt_pre == 0 && st_opt->opt_fwidth == -1) //// case of 0
+    if (!ft_atoi(value) && st_opt->opt_pre == 0 && st_opt->opt_fwidth == -1)
     {
         if (value != NULL)
             free(value);
@@ -37,23 +36,17 @@ int     ft_type_d(st_listopt *st_opt, va_list *ap)
     }
     ft_correct_flagx(st_opt, st_opt->opt_flag, 'd');
     resu = ft_applywith_d(resu, value, st_opt);
-    resu = ft_applyopt_d(resu, value, st_opt);
-    /// free value and resu;
-    if (value != NULL)
-        free(value);
+    resu = ft_applyopt_d(resu, value, st_opt, 0);
+    ft_strdel(&value);
     return (ft_putstrr(resu, 1));
 }
 
-///// ft_applyoption_d : apply option for d => pre / flag 
-char    *ft_applyopt_d(char *resu, char *value, st_listopt *st_opt) /// > 25 + 2
+char    *ft_applyopt_d(char *resu, char *value, st_listopt *st_opt, int index) /// Done
 {
     char    *n_value;
     int     len_v;
-    int     index;
 
-    index = 0;
     len_v = ft_strlen(value);
-    /// Cas Pre and Without ==> create n_value and fill it with value
     n_value = value;
     if (st_opt->opt_pre != -1)
     {
@@ -67,23 +60,16 @@ char    *ft_applyopt_d(char *resu, char *value, st_listopt *st_opt) /// > 25 + 2
         ft_memcpy(n_value, value, len_v);
     }
     len_v = ft_strlen(n_value);
-    ///////**** Flags
-    // get index for flag '-'
     if (st_opt->opt_fwidth > len_v && ft_check_char(st_opt->opt_flag, '-') != 1)
         index = st_opt->opt_fwidth - len_v;
-    // main flag
     ft_applymain_flag(resu, n_value, st_opt, &index);
-    // Case if n_value = "0" swap with " "
-    n_value[0] = (st_opt->c != 'o' && n_value[0] == '0' && n_value[1] == '\0' 
-        && st_opt->opt_pre == 0) ? ' ' : n_value[0]; 
-    // Get final result
+    n_value[0] = (st_opt->c == 'o' && n_value[0] == '0' && n_value[1] == '\0' 
+        && st_opt->opt_pre == 0 && ft_check_char(st_opt->opt_flag, '#') != 1) ? ' ' : n_value[0]; 
     ft_memcpy(&resu[index], n_value, len_v);
-    /// free
     (n_value != value) ? ft_strdel(&n_value) : NULL;
     return (resu);
 }
 
-//// ft_apply_len modifier_d : apply len modifier for d
 char    *ft_apply_lenmod_d(long long int i_value, char *opt_len) /// Done
 {
     char    *value;

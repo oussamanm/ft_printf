@@ -13,7 +13,7 @@
 #include "../../includes/ft_printf.h"
 
 /// ft_type_f : Main function for type f
-int     ft_type_f(st_listopt *st_opt, va_list *ap) /// > 25 + 4
+int     ft_type_f(st_listopt *st_opt, va_list *ap) /// Done
 {
     char        *i_value;
     int         rtn; // if Resul is NaN or Infi
@@ -21,12 +21,7 @@ int     ft_type_f(st_listopt *st_opt, va_list *ap) /// > 25 + 4
     t_bits      st_bits;
 
     st_exp = ft_add_lstexp();
-    if (ft_check_char(st_opt->opt_len, 'L') == 1)       /// long Double
-        i_value = ft_type_Lf(&st_bits, ap);
-    else if (ft_check_char(st_opt->opt_len, 'l') == 1)   /// float || Double
-        i_value = ft_type_lf(&st_bits, ap, 1);
-    else
-        i_value = ft_type_lf(&st_bits, ap, 0);
+    i_value = ft_typef_help(st_opt, &st_bits, ap);
     st_exp->sign = TO_INT(i_value[0]);
     st_exp->expo = ft_conv_bin(&i_value[1], st_bits.bit_e) - st_bits.bit_bias;
     rtn = (st_exp->expo == 128) ? ft_cas_spesc(st_exp->sign, &i_value[st_bits.bit_e + 1], st_opt) : 0; /// add condition down if rtn == 0
@@ -47,7 +42,7 @@ int     ft_type_f(st_listopt *st_opt, va_list *ap) /// > 25 + 4
 }
 
 /// Fill i_value with binary && fill struct bit position
-char     *ft_type_lf(t_bits *st_bits, va_list *ap, int b_lf) // Done
+char     *ft_type_lf(t_bits *st_bits, va_list *ap, int b_lf) /// Done
 {
     char        *i_value;
     float       fvalue;
@@ -70,7 +65,7 @@ char     *ft_type_lf(t_bits *st_bits, va_list *ap, int b_lf) // Done
     (*st_bits).bit_bias = 127;
     return (i_value);
 }
-char     *ft_type_Lf(t_bits *st_bits, va_list *ap) // Done
+char     *ft_type_Lf(t_bits *st_bits, va_list *ap) /// Done
 {
     char            *i_value;
     long double     value;
@@ -86,7 +81,7 @@ char     *ft_type_Lf(t_bits *st_bits, va_list *ap) // Done
 }
 
 /// Calcule Fraction & expo To get result
-char    *ft_resu_frac(st_expdb *st_exp, int len_frac) // Don
+char    *ft_resu_frac(st_expdb *st_exp, int len_frac) /// Don
 {
     int     index_p;
     char    *temp;
@@ -115,7 +110,7 @@ char    *ft_resu_frac(st_expdb *st_exp, int len_frac) // Don
 }
 
 /// Case NaN and Infi and -Infi
-int     ft_cas_spesc(int sign, char *i_value, st_listopt *st_opt) // Done
+int     ft_cas_spesc(int sign, char *i_value, st_listopt *st_opt) /// Done
 {
     /// check NaN
     char    *n_value;
