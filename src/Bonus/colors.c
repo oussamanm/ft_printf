@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   colors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zamazzal <zouhir.amazzal@gmail.com>        +#+  +:+       +#+        */
+/*   By: onouaman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/18 21:47:02 by zamazzal          #+#    #+#             */
-/*   Updated: 2019/03/25 22:03:01 by zamazzal         ###   ########.fr       */
+/*   Created: 2019/04/06 21:14:19 by onouaman          #+#    #+#             */
+/*   Updated: 2019/04/12 04:00:39 by onouaman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/ft_printf.h"
-#include "../../includes/colors.h"
+#include "ft_printf.h"
+#include "colors.h"
 
-int printcolor(char *color)
+int		ft_color(char *color)
 {
 	if (ft_strequ(color, "black"))
 		ft_putstr(BLACK);
@@ -38,22 +38,22 @@ int printcolor(char *color)
 	return (1);
 }
 
-int	checkcolor(char *str)
+int		checkcolor(char *str)
 {
-	char *color;
-	int i;
+	char	*color;
+	int		i;
 
 	i = 0;
 	while (str[i] != '\0' && str[i] != '}')
 		i++;
-	if (str[i] != '}')
+	if (str[i] != '}' || i < 2)
 		return (0);
 	color = ft_strsub(str, 0, i);
-	if (printcolor(color))
+	if (ft_color(color))
 	{
-		free(color);
+		ft_strdel(&color);
 		return (i);
 	}
-	free(color);
+	ft_strdel(&color);
 	return (0);
 }

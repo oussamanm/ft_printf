@@ -6,27 +6,27 @@
 /*   By: onouaman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 23:33:46 by onouaman          #+#    #+#             */
-/*   Updated: 2019/03/30 23:33:48 by onouaman         ###   ########.fr       */
+/*   Updated: 2019/04/12 05:17:36 by onouaman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/ft_printf.h"
+#include "ft_printf.h"
 
-//// ft_add_char : add char in index of string
-char	*ft_add_char(char *str, int index, char c, int i_free) // Done
+char	*ft_add_char(char *str, int index, char c, int i_free)
 {
 	int		len;
 	char	*rtn;
 
 	len = (int)ft_strlen(str);
-	if (index < 0){
-		printf("\nhaniiiiiiiiiiiiiiiiiiii should free str \n");
-		return (NULL);}
+	if (index < 0)
+	{
+		(i_free == 1) ? ft_strdel(&str) : NULL;
+		return (NULL);
+	}
 	rtn = (index > len) ? ft_strnew(index + 1) : ft_strnew(len + 1);
 	rtn[index] = c;
-	if (index == 0)
-		ft_memcpy(&rtn[1], str, len);
-	else if (index > 0 && index <= len)
+	(index == 0) ? ft_memcpy(&rtn[1], str, len) : NULL;
+	if (index > 0 && index <= len)
 	{
 		ft_memcpy(rtn, &str[0], index);
 		if (index < len)
@@ -37,13 +37,11 @@ char	*ft_add_char(char *str, int index, char c, int i_free) // Done
 		ft_memcpy(rtn, str, len);
 		ft_bchar(&rtn[len], index - len, '0');
 	}
-	if (i_free == 1)
-		ft_strdel(&str);
+	(i_free == 1) ? ft_strdel(&str) : NULL;
 	return (rtn);
 }
 
-//// ft_remove_char : remove char from string
-void	ft_rmchar(char *src, char c) // Done
+void	ft_rmchar(char *src, char c)
 {
 	int		i;
 	int		j;
@@ -65,8 +63,7 @@ void	ft_rmchar(char *src, char c) // Done
 	}
 }
 
-//// ft_string_reverse : shift string to right or left
-char	*ft_strrev(char *str, size_t len, int alloc) // Done
+char	*ft_strrev(char *str, size_t len, int alloc)
 {
 	size_t	i;
 	size_t	j;
@@ -95,8 +92,7 @@ char	*ft_strrev(char *str, size_t len, int alloc) // Done
 	return (p_str);
 }
 
-//// ft_shift_str : shift string to right or left
-char	*ft_shift_str(int r_l, char *str, int nbr_shift) // Done
+char	*ft_shift_str(int r_l, char *str, int nbr_shift)
 {
 	char	*new_str;
 	int		len;
@@ -118,8 +114,7 @@ char	*ft_shift_str(int r_l, char *str, int nbr_shift) // Done
 	return (new_str);
 }
 
-//// ft_escap_zeros : rm all zeros in first of string
-char	*ft_escap_str(char *str) // Done
+char	*ft_escap_str(char *str)
 {
 	int		i;
 	int		len;

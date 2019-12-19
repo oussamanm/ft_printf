@@ -6,13 +6,12 @@
 /*   By: onouaman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 23:29:51 by onouaman          #+#    #+#             */
-/*   Updated: 2019/03/30 23:29:52 by onouaman         ###   ########.fr       */
+/*   Updated: 2019/04/06 02:09:50 by onouaman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/ft_printf.h"
+#include "ft_printf.h"
 
-/// ft_bchar : simple bchar , fill string with char c
 void	ft_bchar(char *str, size_t n, char c)
 {
 	size_t	i;
@@ -25,14 +24,13 @@ void	ft_bchar(char *str, size_t n, char c)
 	}
 }
 
-/// ft_putstrr : simple pustr with free parametre
 int		ft_putstrr(char *s, int free_str)
 {
 	int		i;
 
 	i = 0;
-	if (!s)
-		return (i);
+	if (s == NULL || !s)
+		return (0);
 	while (s[i] != '\0')
 	{
 		ft_putchar(s[i]);
@@ -43,7 +41,6 @@ int		ft_putstrr(char *s, int free_str)
 	return (i);
 }
 
-/// ft_strnew_char : simple strnew and fill it with char c
 char	*ft_strnew_char(size_t size, char c)
 {
 	char	*str;
@@ -63,7 +60,6 @@ char	*ft_strnew_char(size_t size, char c)
 	return (str);
 }
 
-/// ft_strjoir : simple strjoin with parametre free
 char	*ft_strjoir(char *s1, char *s2, int rm)
 {
 	char		*new_str;
@@ -87,7 +83,7 @@ char	*ft_strjoir(char *s1, char *s2, int rm)
 		*(new_str + i++) = *(s2 + j);
 	if (rm == 1 || rm == 3)
 		ft_strdel(&s1);
-	else if (rm == 2 || rm == 3)
+	if (rm == 2 || rm == 3)
 		ft_strdel(&s2);
 	return (new_str);
 }

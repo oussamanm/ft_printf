@@ -6,7 +6,7 @@
 /*   By: onouaman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 13:33:23 by onouaman          #+#    #+#             */
-/*   Updated: 2018/10/15 13:44:53 by onouaman         ###   ########.fr       */
+/*   Updated: 2019/04/06 20:37:36 by onouaman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ size_t	ft_strlen(const char *s)
 	size_t i;
 
 	if (!s || s == NULL)
-		return -1;
+		return (-1);
 	i = 0;
 	while (s[i] != '\0')
 		i++;

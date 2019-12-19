@@ -1,40 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   colors.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: onouaman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/08 00:10:39 by onouaman          #+#    #+#             */
-/*   Updated: 2019/04/06 20:38:18 by onouaman         ###   ########.fr       */
+/*   Created: 2019/04/12 03:20:04 by onouaman          #+#    #+#             */
+/*   Updated: 2019/04/12 03:20:08 by onouaman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef COLORS_H
+# define COLORS_H
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
-{
-	size_t	i;
-	char	*n_src;
-	char	*n_dst;
+# define WHITE "\033[37;1m"
+# define MAGENTA "\033[35;1m"
+# define RED "\033[31;1m"
+# define BLUE "\033[34;1m"
+# define GREEN "\033[32;1m"
+# define CYAN "\033[36;1m"
+# define BLACK "\033[30;1m"
+# define YELLOW "\033[33;1m"
+# define EOC "\033[0m"
 
-	i = -1;
-	n_src = (char *)src;
-	n_dst = (char *)dst;
-	if (n_src == n_dst)
-		return (dst);
-	else if (n_src < n_dst)
-	{
-		while (len > 0)
-		{
-			n_dst[len - 1] = n_src[len - 1];
-			len--;
-		}
-	}
-	else
-	{
-		while (++i < len)
-			n_dst[i] = n_src[i];
-	}
-	return (dst);
-}
+#endif

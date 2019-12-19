@@ -6,14 +6,14 @@
 /*   By: onouaman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/14 20:34:05 by onouaman          #+#    #+#             */
-/*   Updated: 2018/10/20 21:56:36 by onouaman         ###   ########.fr       */
+/*   Updated: 2019/04/06 20:45:47 by onouaman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-#include <stdio.h>
-static	void			ft_nega(long long int n, long long int *n_nbr, int *n_nega, int *i_ismin)
+static void				ft_nega(long long int n, long long int *n_nbr,
+		int *n_nega, int *i_ismin)
 {
 	*n_nega = 1;
 	*n_nbr = n;
@@ -62,9 +62,7 @@ char					*ft_itoa(long long int n)
 	char			*str;
 
 	lennbr = ft_strleni(n);
-
-	if (!(str = (char *)malloc(sizeof(*str) * (lennbr + 1))))
-		return (NULL);
+	str = ft_strnew(lennbr);
 	ft_nega(n, &n_nbr, &n_nega, &i_ismin);
 	str[lennbr] = '\0';
 	lennbr--;

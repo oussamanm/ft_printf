@@ -6,14 +6,13 @@
 /*   By: onouaman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 19:06:14 by onouaman          #+#    #+#             */
-/*   Updated: 2019/02/26 19:06:16 by onouaman         ###   ########.fr       */
+/*   Updated: 2019/04/16 21:46:30 by onouaman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/ft_printf.h"
+#include "ft_printf.h"
 
-/// ft_declen : get len of a number
-int					ft_declen(int nbr) // Done
+int					ft_declen(int nbr)
 {
 	int		i;
 
@@ -33,9 +32,7 @@ int					ft_declen(int nbr) // Done
 	return (i);
 }
 
-///Task : remove one function of power
-
-unsigned long long	ft_power(int nbr, int pwr) // Done
+unsigned long long	ft_power(int nbr, int pwr)
 {
 	unsigned long long	rtn;
 
@@ -50,7 +47,7 @@ unsigned long long	ft_power(int nbr, int pwr) // Done
 	return (rtn);
 }
 
-unsigned long long	ft_power_nega(int nbr, int pwr)  // Done
+unsigned long long	ft_power_nega(int nbr, int pwr)
 {
 	unsigned long long	rtn;
 
@@ -65,14 +62,30 @@ unsigned long long	ft_power_nega(int nbr, int pwr)  // Done
 	return (rtn);
 }
 
-int     ft_all_zero(char *nbr)  // Done
+int					ft_all_zero(char *nbr)
 {
-    if (nbr)
-    while(*nbr != '\0')
-    {
-        if (*nbr != '0')
-            return (0);
-        nbr++;
-    }
-    return (1);
+	if (nbr)
+		while (*nbr != '\0')
+		{
+			if (*nbr != '0')
+				return (0);
+			nbr++;
+		}
+	return (1);
+}
+
+int					ft_checkz_f(t_expdb *st_exp, t_bits *st_b)
+{
+	int rtn;
+
+	rtn = ft_all_zero(&st_exp->frac[1]);
+	if (rtn != 1)
+		return (0);
+	if (st_b->bit_m == 23 && st_exp->expo == -127)
+		return (1);
+	else if (st_b->bit_m == 52 && st_exp->expo == -1023)
+		return (1);
+	else if (st_b->bit_m == 63 && st_exp->expo == -16383)
+		return (1);
+	return (0);
 }

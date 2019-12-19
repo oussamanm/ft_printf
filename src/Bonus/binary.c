@@ -3,85 +3,90 @@
 /*                                                        :::      ::::::::   */
 /*   binary.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zamazzal <zouhir.amazzal@gmail.com>        +#+  +:+       +#+        */
+/*   By: onouaman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/19 15:47:37 by zamazzal          #+#    #+#             */
-/*   Updated: 2019/03/25 22:05:15 by zamazzal         ###   ########.fr       */
+/*   Created: 2019/04/06 16:59:37 by onouaman          #+#    #+#             */
+/*   Updated: 2019/04/12 05:10:56 by onouaman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/ft_printf.h"
-#include "../../includes/colors.h"
+#include "ft_printf.h"
 
-int		b_char(unsigned char bit)
+int		ft_bin_char(unsigned char nbr)
 {
-	int	i;
-	int j;
+	int		resu;
+	int		i;
 
-	i = 256;
-	j = 0;
-	while ((i = i >> 1))
+	i = 7;
+	resu = 0;
+	while (i >= 0)
 	{
-		if ((bit & i))
+		if (1 & (nbr >> i))
 		{
 			ft_putchar('1');
-			j++;
+			resu++;
 		}
-		else if (j != 0)
+		else
 		{
 			ft_putchar('0');
-			j++;
+			resu++;
 		}
+		i--;
 	}
-	return (j);
+	if (resu == 0)
+		return (ft_putstrr("0", 0));
+	return (resu);
 }
 
-int		b_int(int x)
+int		ft_bin_str(char *str)
 {
-	unsigned long long int i;
-	int j;
+	int		i;
+	int		rtn;
 
-	i = 17179869184;
-	j = 0;
-	while ((i = i >> 1))
-	{
-		if ((x & i))
-		{
-			ft_putchar('1');
-			j++;
-		}
-		else if (j != 0)
-		{
-			ft_putchar('0');
-			j++;
-		}
-	}
-	return (j);
-}
-
-int		b_str(char *str)
-{
-	int i;
-	int rtn;
-	
 	i = 0;
 	rtn = 0;
 	while (str[i] != '\0')
-		rtn +=b_char(str[i++]);
+		rtn += ft_bin_char(str[i++]);
 	return (rtn);
+}
+
+int		ft_bin_int(int nbr)
+{
+	int		i;
+	int		j;
+
+	i = 31;
+	j = 0;
+	while (i >= 0)
+	{
+		if (1 & (nbr >> i))
+		{
+			ft_putstrr("1", 0);
+			j++;
+		}
+		else if (j != 0)
+		{
+			ft_putstrr("0", 0);
+			j++;
+		}
+		i--;
+	}
+	if (j == 0)
+		return (ft_putstrr("0", 0));
+	return (j);
 }
 
 int		ft_type_b(char c, va_list *ap)
 {
-	int rtn;
+	int		rtn;
 
 	rtn = 0;
 	if (c == 'i')
-		rtn = b_int(va_arg(*ap, int));
+		rtn = ft_bin_int(va_arg(*ap, int));
 	else if (c == 'c')
-		rtn = b_char(va_arg(*ap, int));
+		rtn = ft_bin_char(va_arg(*ap, int));
 	else if (c == 's')
-		rtn = b_str(va_arg(*ap, char*));
+		rtn = ft_bin_str(va_arg(*ap, char*));
 	else
 	{
 		ft_putstr("results in undefined behavior\n");

@@ -6,7 +6,7 @@
 /*   By: onouaman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/07 17:55:00 by onouaman          #+#    #+#             */
-/*   Updated: 2018/10/19 19:39:02 by onouaman         ###   ########.fr       */
+/*   Updated: 2019/04/06 20:38:37 by onouaman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 	while (i < n)
 	{
 		if (n_src[i] == '\0')
-			break;
+			break ;
 		n_dst[i] = n_src[i];
 		i++;
 	}

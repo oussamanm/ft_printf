@@ -6,18 +6,18 @@
 /*   By: onouaman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 23:31:42 by onouaman          #+#    #+#             */
-/*   Updated: 2019/03/31 19:14:30 by onouaman         ###   ########.fr       */
+/*   Updated: 2019/04/06 16:56:39 by onouaman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/ft_printf.h"
+#include "ft_printf.h"
 
 int		ft_check_char(char *str, char c)
 {
 	char	*p;
 
 	if (str == NULL)
-		return (-1);
+		return (0);
 	p = str;
 	while (*p)
 	{

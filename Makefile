@@ -1,29 +1,24 @@
 SRCDIR = src
 LIB = libs
 FLAG = -Wall -Wextra -Werror
-
 INC = ./libftprintf.a
-SRC = $(SRCDIR)/Helper\ Func/*.c\
-$(SRCDIR)/main\ Func/*.c\
-$(SRCDIR)/Type\ d/*.c\
-$(SRCDIR)/Type\ diffec/*.c\
-$(SRCDIR)/Type\ f/*.c\
-$(SRCDIR)/Type\ simple/*.c\
-$(SRCDIR)/*.c
-
+SRC = $(SRCDIR)/Helper_Func/*.c\
+$(SRCDIR)/Main_Func/*.c\
+$(SRCDIR)/Type_d/*.c\
+$(SRCDIR)/Opr_Math/*.c\
+$(SRCDIR)/Type_diffec/*.c\
+$(SRCDIR)/Type_f/*.c\
+$(SRCDIR)/Type_simple/*.c\
+$(SRCDIR)/BONUS/*.c
 OBJ = $(LIB)/*.o
-
 NAME = ./libftprintf.a
 
 all : $(NAME)
 
-main :
-	gcc main.c libftprintf.a -o ft_printf
-
 $(NAME):
 		make re -C $(LIB)/libft
 		@mv $(LIB)/libft/libft.a libs/
-		gcc -c $(FLAG) $(SRC)
+		gcc -I includes -c $(FLAG) $(SRC)
 		@mv *.o libs/
 		@mv ./libs/libft/*.o libs/
 		ar rc $(INC) $(OBJ) 
@@ -36,5 +31,7 @@ clean:
 fclean: clean
 		make -C libs/libft fclean
 		rm -f $(INC)
+		rm -f $(LIB)/libft.a
+		rm -f ./ft_printf
 
 re: fclean all
